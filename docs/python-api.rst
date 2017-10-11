@@ -1,83 +1,83 @@
 Python API
 ==========
 
-Any Rapido Python function receives ``context`` as parameter.
+Any Rapido Python function receives :py:obj:`context` as parameter.
 
-The ``context`` provides the following properties:
+The :py:obj:`context` provides the following properties:
 
 .. contents::
     :local:
 
-``context.app``
----------------
+:py:obj:`context.app`
+---------------------
 
 This property gives access to the Rapido application object.
 
 *Properties*
 
-``acl``
+:py:obj:`acl`
     Returns the Rapido application's access control list object (see below).
 
-``blocks``
+:py:obj:`blocks`
     Returns the existing block ids.
 
-``indexes``
+:py:obj:`indexes`
     Returns the existing index ids.
 
-``url``
+:py:obj:`url`
     Returns the application URL.
 
 *Methods*
 
-``create_record(self, id=None)``
+:py:meth:`create_record(self, id=None)`
     Creates and return a new record.
     If ``id`` is not provided, a default one is generated.
     If ``id`` already exists, it is replaced with another one (like ``...-1``,
     ``...-2``).
 
-``delete_record(self, id=None, record=None, ondelete=True)``
+:py:meth:`delete_record(self, id=None, record=None, ondelete=True)`
     Delete the record (which can be passed as object or id).
     If ``ondelete`` is truthy,
     the ``on_delete`` function will be called (if it exists)
     before deleting the record.
 
-``get_block(self, block_id)``
+:py:meth:`get_block(self, block_id)`
     Returns a block.
 
-``get_record(self, id)``
+:py:meth:`get_record(self, id)`
     Returns the record corresponding to the ``id``,
     or ``None`` if it does not exist.
 
-``log(self, message)``
+:py:meth:`log(self, message)`
     Logs a message in the server log. If the app is in *debug* mode, logs
     the same message in the browser's javascript console.
     Messages can be strings or any other serializable object.
 
-``records(self)``
+:py:meth:`records(self)`
     Returns all the records as a list.
     
-``_records(self)``
+:py:meth:`_records(self)`
     Returns all the records as a Python generator.
 
-``search(self, query, sort_index=None, reverse=False)``
+:py:meth:`search(self, query, sort_index=None, reverse=False)`
     Performs a search and returns records as a list.
 
-``_search(self, query, sort_index=None, reverse=False)``
+:py:meth:`_search(self, query, sort_index=None, reverse=False)`
     Performs a search and returns records as a Python generator.
 
-``context.request`` and ``context.parent_request``
---------------------------------------------------
+:py:obj:`context.request` and :py:obj:`context.parent_request`
+--------------------------------------------------------------
 
-``context.request`` is the actual request to Rapido, like:
+:py:obj:`context.request` is the actual request to Rapido, like:
 
     http://localhost:8080/Plone/@@rapido/rating/blocks/rate
 
 When a block is embedded in a Plone page,
-``context.request`` was issued by the user's browser,
+:py:obj:`context.request` was issued by the user's browser,
 it was issued by Diazo.
 
 To get the request issued by the user's browser, we use
-``context.parent_request``.
+:py:obj:`context.parent_request`.
 
 Both of them are HTTP requests objects, see the `reference documentation <http://docs.plone.org/develop/plone/serving/http_request_and_response.html>`_.
 
@@ -97,8 +97,8 @@ Examples:
     request.get('BODY')
 
 
-``context.portal``
-------------------
+:py:obj:`context.portal`
+------------------------
 
 Return the Plone portal object.
 
@@ -114,8 +114,8 @@ The most common task we will perform through the portal object is to get its con
 
     folder = context.portal['my-folder']
 
-``context.content``
--------------------
+:py:obj:`context.content`
+-------------------------
 
 It returns the current Plone content.
 
@@ -140,15 +140,15 @@ To manipulate the content, refer to the `Plone API documentation about contents 
 
     Depending on its content type, the content object might have very different methods and properties.
 
-``context.record``
--------------------
+:py:obj:`context.record`
+------------------------
 
 It returns the current Rapido record if any.
 
 See `Record`_ for more information.
 
-``context.api``
----------------
+:py:obj:`context.api`
+---------------------
 
 It gives access to the full `Plone API <http://docs.plone.org/develop/plone.api/docs/index.html>`_.
 
@@ -160,7 +160,7 @@ It gives access to the full `Plone API <http://docs.plone.org/develop/plone.api/
 
         from plone import api  # WRONG
 
-    because the API is already available in the Rapido `context`:
+    because the API is already available in the Rapido :py:obj:`context`:
 
     .. code-block:: python
 
@@ -205,10 +205,10 @@ This API mainly allows:
 
 For more detailed examples, refer to the `Plone API documentation <http://docs.plone.org/develop/plone.api/docs/index.html>`_.
 
-``context.rapido``
-------------------
+:py:meth:`context.rapido`
+-------------------------
 
-``context.rapido`` is a function able to obtain another Rapido application in our current script.
+:py:meth:`context.rapido` is a function able to obtain another Rapido application in our current script.
 
 It takes as mandatory parameter the id of the Rapido application. Example:
 
@@ -230,13 +230,13 @@ Example:
 
 .. warning:: For security reason, it is not allowed to import a Python module in a Rapido Python file.
 
-Rapido provides some safe modules through ``context.modules``:
+Rapido provides some safe modules through :py:obj:`context.modules`:
 
-- ``context.modules.datetime``: `Basic date and time types <https://docs.python.org/2/library/datetime.html>`_,
-- ``context.modules.random``: `Generate pseudo-random numbers <https://docs.python.org/2/library/random.html>`_,
-- ``context.modules.time``: `Time access and conversions <https://docs.python.org/2/library/time.html>`_.
+- :py:mod:`context.modules.datetime`: `Basic date and time types <https://docs.python.org/2/library/datetime.html>`_,
+- :py:mod:`context.modules.random`: `Generate pseudo-random numbers <https://docs.python.org/2/library/random.html>`_,
+- :py:mod:`context.modules.time`: `Time access and conversions <https://docs.python.org/2/library/time.html>`_.
 
-If we need to add extra modules to ``context.modules``, we can do it by adding in our own add-on something like:
+If we need to add extra modules to :py:obj:`context.modules`, we can do it by adding in our own add-on something like:
 
 .. code-block:: python
 
@@ -245,7 +245,7 @@ If we need to add extra modules to ``context.modules``, we can do it by adding i
 
     app.safe_modules.re = re
 
-In this example, we allow to access ``context.modules.re`` from our Rapido Python files.
+In this example, we allow to access :py:mod:`context.modules.re` from our Rapido Python files.
 
 Record
 ------
@@ -260,20 +260,20 @@ Record
 
 *Methods*
 
-``display(self, edit=False)``
+:py:meth:`display(self, edit=False)`
     Render the record using its associated block (if any).
 
-``get(self, name, default=None)``
+:py:meth:`get(self, name, default=None)`
     Returns the value of the item (and defaults to ``default`` if the item does
     not exist).
 
-``items(self)``
+:py:meth:`items(self)`
     Returns all the stored items.
 
-``reindex(self)``
+:py:meth:`reindex(self)`
     Re-index the record.
 
-``save(self, request=None, block=None, block_id=None, creation=False)``
+:py:meth:`save(self, request=None, block=None, block_id=None, creation=False)`
     Update the record with the provided items and index it.
 
     ``request`` can be an actual HTTP request or a dictionnary.
@@ -283,7 +283,7 @@ Record
 
     If no block (and ``request`` is a dict), we just save the items values.
 
-``set_block(self, block_id)``
+:py:meth:`set_block(self, block_id)`
     Assign a block to the record. The block will be then used to render the
     record or to save it.
 
@@ -308,11 +308,11 @@ Access control list
 
 .. note::
 
-    The application access control list can be obtain by ``context.app.acl``.
+    The application access control list can be obtain by :py:obj:`context.app.acl`.
 
 **Methods**
 
-``current_user(self)``
+:py:meth:`current_user(self)`
     Returns the current user id.
     Equivalent to:
 
@@ -320,7 +320,7 @@ Access control list
 
     context.api.user.get_current().getUserName()
 
-``current_user_groups(self)``
+:py:meth:`current_user_groups(self)`
     Returns the groups the current user belongs to.
     Equivalent to:
 
@@ -328,12 +328,12 @@ Access control list
 
     api.user.get_current().getGroups()
 
-``has_access_right(self, access_right)``
+:py:meth:`has_access_right(self, access_right)`
     Returns ``True`` if the current user has the specified access right (Rapido
     access rights are ``reader``, ``author``, ``editor``, ``manager``)
 
-``has_role(self, role_id)``
+:py:meth:`has_role(self, role_id)`
     Returns ``True`` if the current user has the specified role.
 
-``roles(self)``
+:py:meth:`roles(self)`
     Returns the existing roles.

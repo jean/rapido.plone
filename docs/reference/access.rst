@@ -5,7 +5,7 @@ Access control list
 -------------------
 
 The ACL defined in the app applies to records, not to blocks.
-Blocks are always accessible, if we do not want a block to render some
+Blocks are always accessible; if we do not want a block to render some
 information, we have to implement this in its Python file or use the
 ``view_permission`` setting.
 
@@ -14,7 +14,7 @@ a record URL, deleting a record via the JSON API, etc.), and it does **not**
 impact what happens in block Python files.
 
 For instance in the :doc:`../tutorial`, if an anonymous visitor clicks on the
-*"Like"* button on a page nobody had voted for yet, the ``like`` function
+:guilabel:`Like` button on a page nobody had voted for yet, the :py:func:`like` function
 will create a record.
 
 But an anonymous visitor would not be able to modify this record or to delete it
@@ -43,7 +43,7 @@ The access levels are:
   own records,
 - ``editor``: can read/modify/delete any record, can create records.
 
-The access control settings are managed in the ``settings.yaml`` file in the app
+The access control settings are managed in the :file:`settings.yaml` file in the app
 root folder.
 
 Roles

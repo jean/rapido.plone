@@ -12,5 +12,5 @@ Records can also be created manually (without any associated block) using the
 Python API or the REST API. Such records cannot be rendered automatically by
 calling their URL, but their item values can be used in a block if we know how
 to find the record (in the :doc:`../tutorial` for instance, our records are
-created manually from the ``like`` function, they are not associated with the
+created manually from the :py:func:`like` function, they are not associated with the
 ``rate`` block, but we use the stored items to produce our element contents).

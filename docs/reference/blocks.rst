@@ -1,15 +1,15 @@
 Blocks
 ======
 
-A block is defined by 3 files stored in the ``blocks`` folder of the
+A block is defined by 3 files stored in the :file:`blocks` folder of the
 application.
 Those files have the same filename (which is the block id) with the extensions
-``.html``, ``.py`` and ``.yaml``.
+:file:`.html`, :file:`.py` and :file:`.yaml`.
 
 The HTML file
 -------------
 
-The ``.html`` file contains the layout of the block. It is regular HTML. 
+The :file:`.html` file contains the layout of the block. It is regular HTML. 
 Dynamic elements are enclosed in curly brackets. Example:
 
 .. code-block:: html
@@ -58,7 +58,7 @@ TAL template
 ^^^^^^^^^^^^
 
 The HTML template only offers element insertion. If we need more templating
-features, the ``.html`` file can be replaced by a ``.pt`` file, and we can use the
+features, the :file:`.html` file can be replaced by a :file:`.pt` file, and we can use the
 `TAL commands <http://www.owlfish.com/software/simpleTAL/tal-guide.html>`_.
 
 In the context of a Page Template, the block elements are available in the
@@ -103,7 +103,7 @@ If an element returns an iterable object (list, dictionary), we can make a loop:
         </li>
     </ul>
 
-The current Rapido context is available in the ``context`` object:
+The current Rapido context is available in the :py:obj:`context` object:
 
 .. code-block:: html
 
@@ -112,7 +112,7 @@ The current Rapido context is available in the ``context`` object:
 The YAML file
 -------------
 
-The ``.yaml`` file contains:
+The :file:`.yaml` file contains:
 - the elements settings (see below),
 
 - the ``target`` option: if set to ``ajax``, any action in the block resulting in a
@@ -124,5 +124,5 @@ The ``.yaml`` file contains:
 The Python file
 ---------------
 
-The ``.py`` file contains the implementation of each element as a Python function
-which name is the element id, and taking ``context`` as parameter.
+The :file:`.py` file contains the implementation of each element as a Python function
+which name is the element id, and taking :py:obj:`context` as parameter.

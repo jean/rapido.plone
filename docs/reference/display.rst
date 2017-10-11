@@ -153,8 +153,8 @@ Rapido provides a Mosaic tile, so any Rapido block can be added as a tile to
 our layouts.
 
 To enable it, we need to install Mosaic and then to import a specific Rapido
-Generic Setup profile named **"rapido.plone mosaic tile"** from the *ZMI >>>
-portal_setup >>> Import* and click on **"Import all steps"** button.
+Generic Setup profile named **"rapido.plone mosaic tile"** from the 
+:menuselection:`ZMI --> portal_setup --> Import` and click on :guilabel:`Import all steps` button.
 
 Here the **"Import"** page link from **portal_setup** tool for run Generic Setup profile:
 

@@ -1,15 +1,19 @@
 Installation
 ============
 
-Install Plone, then modify ``buildout.cfg`` to add Rapido as a dependency::
+Install Plone, then modify :file:`buildout.cfg` to add Rapido as a dependency:
 
-    eggs =
-        ...
-        rapido.plone
+.. code-block:: ini
 
-    [versions]
-    plone.resource = 1.2
+   eggs =
+       ...
+       rapido.plone
 
-Then, run your buildout::
+   [versions]
+   plone.resource = 1.2
+
+Then, run your buildout:
+
+.. code-block:: console
 
     $ bin/buildout -N

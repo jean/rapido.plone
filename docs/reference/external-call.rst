@@ -5,7 +5,7 @@ By traversing to ``@@rapido-call``, we can call a Rapido element as a Python fun
 
 It might be very useful when we want to use Rapido from a PythonScript,
 a Plone page template,
-or any Plone mechanism offering to run a small script (Plone workflow, ``collective.easyform``, etc.).
+or any Plone mechanism offering to run a small script (Plone workflow, :py:mod:`collective.easyform`, etc.).
 
 ``@@rapido-call`` accepts the following parameters:
 
@@ -25,7 +25,7 @@ PythonScript:
         min_duration=2,
         client='smartphone')
 
-Rapido element in ``myapp/stats.py``:
+Rapido element in :file:`myapp/stats.py`:
 
 .. code-block:: python
 

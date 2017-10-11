@@ -16,5 +16,5 @@ and requires the following parameters:
 - the block id,
 - the function name.
 
-The ``context.content`` received by the function will be the content where the
+The :py:obj:`context.content` received by the function will be the content where the
 event happened.

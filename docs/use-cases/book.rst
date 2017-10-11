@@ -9,14 +9,14 @@ Create TTW (Through The Web) a *Book* content type where fields are indexed for 
 Content type
 ------------
 
-Add a new content type *Book* on the *Dexterity Content Types* control panel
+Add a new content type *Book* on the :guilabel:`Dexterity Content Types` control panel
 (http://localhost:8080/Plone/@@dexterity-types).
 
 .. image:: ../files/book-1.png
 
 Edit the *Book* configuration (http://localhost:8080/Plone/dexterity-types/book).
-In the *Behaviors* tab, uncheck the *Dublin Core metadata* behavior and *Save*.
-In the *Fields* tab, click on the *Edit XML Field Model* button and replace the XML model by:
+In the :guilabel:`Behaviors` tab, uncheck the :guilabel:`Dublin Core metadata` behavior and :guilabel:`Save`.
+In the :guilabel:`Fields` tab, click on the :guilabel:`Edit XML Field Model` button and replace the XML model by:
 
 .. code-block:: xml
 
@@ -70,13 +70,13 @@ Full text search field
 ----------------------
 
 If you have a lot of books in your site, you would like to search on the author's name or the back cover content.
-To do this we have to provide a ``SearchableText`` method or field which give the content of the full-text index.
-We'll use a *rapido block* and a *rapido content rule action* to compute this ``SearchableText`` field.
+To do this we have to provide a :py:meth:`SearchableText` method or field which give the content of the full-text index.
+We'll use a *rapido block* and a *rapido content rule action* to compute this :py:meth:`SearchableText` field.
 
 Rapido block
 ............
 
-Go to the *Theming* control panel (http://localhost:8080/Plone/@@theming-controlpanel).
+Go to the :guilabel:`Theming` control panel (http://localhost:8080/Plone/@@theming-controlpanel).
 Create a new theme *MyTheme* with this structure. 
 
 .. code-block:: bash
@@ -91,9 +91,9 @@ Create a new theme *MyTheme* with this structure.
   
 Look for example at the
 `Inheriting a new theme from Barceloneta <http://docs.plone.org/adapt-and-extend/theming/barceloneta.html#inheriting-a-new-theme-from-barceloneta>`_
-section of the Plone documentation for the content of ``index.html``, ``manifest.cfg`` and ``rules.xml`` files.
+section of the Plone documentation for the content of :file:`index.html`, :file:`manifest.cfg` and :file:`rules.xml` files.
 
-Content of ``fields.py`` file:
+Content of :file:`fields.py` file:
 
 .. code-block:: python
 
@@ -120,7 +120,7 @@ Rapido content rule action
 
 The last thing we need is a *rapido content rule action* which is used on each book modification.
 
-Go to the *Content Rules* (http://localhost:8080/Plone/@@rules-controlpanel) and add a rule which is triggered on *Object modified* event.
+Go to the :guilabel:`Content Rules` (http://localhost:8080/Plone/@@rules-controlpanel) and add a rule which is triggered on *Object modified* event.
 
 .. image:: ../files/book-3.png
 
@@ -129,7 +129,7 @@ Add a *Rapido action*.
 
 .. image:: ../files/book-4.png
 
-Assign the content rule on the whole site and *Save*.
+Assign the content rule on the whole site and :guilabel:`Save`.
 
 .. image:: ../files/book-5.png
 
@@ -143,7 +143,7 @@ Custom book view
 
 To build a custom book view, the simplest solution is to use a *Diazo* rule.
 
-For example, you can add in the ``rules.xml`` file of your theme the following ``diazo rule``:
+For example, you can add in the :file:`rules.xml` file of your theme the following ``diazo rule``:
 
 .. code-block:: xml
 

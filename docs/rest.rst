@@ -63,7 +63,8 @@ or::
     X-CSRF-TOKEN: :token
 
 **Response**
-::
+
+.. code-block:: json
 
     {"something": "bla"}
 
@@ -81,7 +82,8 @@ Get a record
     X-CSRF-TOKEN: :token
 
 **Response**
-::
+
+.. code-block:: json
 
     {"item1": "value1", "id": "boom"}
 
@@ -98,13 +100,31 @@ Get all the records
     X-CSRF-TOKEN: :token
 
 **Response**
-::
 
-    [{"path": "http://localhost:8080/demo/@@rapido/test2/record/boom", "id": "boom", "items": {"bla": "bla", "id": "boom"}},
-     {"path": "http://localhost:8080/demo/@@rapido/test2/record/10025657", "id": "10025657", "items": {"id": "10025657"}},
-     {"path": "http://localhost:8080/demo/@@rapido/test2/record/9755269", "id": "9755269", "items": {"bla": "bli", "id": "9755269"}},
-     {"path": "http://localhost:8080/demo/@@rapido/test2/record/8742197835653", "id": "8742197835653", "items": {"bla": "bli", "id": "8742197835653"}},
-     {"path": "http://localhost:8080/demo/@@rapido/test2/record/9755345", "id": "9755345", "items": {"id": "9755345"}}]
+.. code-block:: json
+
+    [
+        {"id": "boom",
+         "items": {"bla": "bla", "id": "boom"},
+         "path": "http://localhost:8080/demo/@@rapido/test2/record/boom"
+        },
+        {"id": "10025657",
+         "items": {"id": "10025657"},
+         "path": "http://localhost:8080/demo/@@rapido/test2/record/10025657"
+        },
+        {"id": "9755269",
+         "items": {"bla": "bli", "id": "9755269"},
+         "path": "http://localhost:8080/demo/@@rapido/test2/record/9755269"
+        },
+        {"id": "8742197835653",
+         "items": {"bla": "bli", "id": "8742197835653"},
+         "path": "http://localhost:8080/demo/@@rapido/test2/record/8742197835653"
+        },
+        {"id": "9755345",
+         "items": {"id": "9755345"},
+         "path": "http://localhost:8080/demo/@@rapido/test2/record/9755345"
+        }
+    ]
 
 Returns all the records.
 
@@ -120,7 +140,8 @@ Create a new record
     {"item1": "value1"}
 
 **Response**
-::
+
+.. code-block:: json
 
     {"path": "http://localhost:8080/demo/@@rapido/test2/record/9755269", "id": "9755269", "success": "created"}
 
@@ -138,7 +159,8 @@ Create many records
     [{"item1": "a"}, {"item1": "b", "item2": "c"}]
 
 **Response**
-::
+
+.. code-block:: json
 
     {"total": 2, "success": "created"}
 
@@ -156,7 +178,8 @@ Create a new record by id
     {"item1": "value1"}
 
 **Response**
-::
+
+.. code-block:: json
 
     {"path": "http://localhost:8080/demo/@@rapido/test2/record/boom", "id": "boom", "success": "created"}
 
@@ -173,7 +196,8 @@ Delete a record
     X-CSRF-TOKEN: :token
 
 **Response**
-::
+
+.. code-block:: json
 
     {"success": "deleted"}
 
@@ -190,7 +214,8 @@ Remove all records
     X-CSRF-TOKEN: :token
 
 **Response**
-::
+
+.. code-block:: json
 
     {"success": "deleted"}
 
@@ -215,7 +240,8 @@ or::
     {"item1": "newvalue1"}
 
 **Response**
-::
+
+.. code-block:: json
 
     {"success": "updated"}
 
@@ -233,10 +259,19 @@ Search for records
     {"query": "total>0", "sort_index": "total"}
 
 **Response**
-::
 
-    [{"path": "http://localhost:8080/tutorial/@@rapido/rating/record//tutorial/news", "id": "/tutorial/news", "items": {"total": 5, "id": "/tutorial/news"}},
-     {"path": "http://localhost:8080/tutorial/@@rapido/rating/record//tutorial", "id": "/tutorial", "items": {"total": 8, "id": "/tutorial"}}]
+.. code-block:: json
+
+    [
+        {"id": "/tutorial/news",
+         "items": {"id": "/tutorial/news", "total": 5},
+         "path": "http://localhost:8080/tutorial/@@rapido/rating/record//tutorial/news"
+        },
+        {"id": "/tutorial",
+         "items": {"id": "/tutorial", "total": 8},
+         "path": "http://localhost:8080/tutorial/@@rapido/rating/record//tutorial"
+        }
+    ]
 
 Search for records.
 
@@ -251,7 +286,8 @@ Re-index
     X-CSRF-TOKEN: :token
 
 **Response**
-::
+
+.. code-block:: json
 
     {"success": "refresh", "indexes": ["id", "total"]}
 

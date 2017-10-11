@@ -6,9 +6,12 @@ Creating a Rapido app
 
 Here are the basic steps to create a Rapido app:
 
-- go to the theme folder (in Plone setup / Theme if we prefer to work inline, or, if your prefer to work in the filesystem, it might be either in the ``static`` folder in your theme package, or in the ``resources`` folder in your Plone install if you do not have a custom package),
-- add a new folder named ``rapido``,
-- in ``rapido``, add a new folder named ``myapp``.
+- go to the theme folder (in :menuselection:`Plone setup --> Theme` if we prefer to work inline,
+  or, if your prefer to work in the filesystem,
+  it might be either in the :file:`static` folder in your theme package,
+  or in the :file:`resources` folder in your Plone install if you do not have a custom package),
+- add a new folder named :file:`rapido`,
+- in :file:`rapido`, add a new folder named :file:`myapp`.
 
 That's it.
 
@@ -28,14 +31,14 @@ Here is a typical layout for a rapido app::
 
 .. note::
 
-    ``settings.yaml`` is not mandatory, but it allows defining access rights if needed.
+    :file:`settings.yaml` is not mandatory, but it allows defining access rights if needed.
 
 .. note::
 
     A Rapido application can also be located in a non-active theme (see :doc:`./reference/application`)
 
 The app components are ``blocks``. A block is defined by a set of 3 files (HTML,
-Python, and YAML) located in the ``blocks`` folder.
+Python, and YAML) located in the :file:`blocks` folder.
 
 The **YAML file** defines the elements. An element is any dynamically generated
 element in a block: it can be a form field (input, select, etc.), but
@@ -58,7 +61,7 @@ action button.
 
 Here is a basic example:
 
-- ``rapido/myapp/blocks/simpleblock.yaml``:
+- :file:`rapido/myapp/blocks/simpleblock.yaml`:
 
   .. code-block:: yaml
   
@@ -68,14 +71,14 @@ Here is a basic example:
               type: ACTION
               label: Do something
 
-- ``rapido/myapp/blocks/simpleblock.html``:
+- :file:`rapido/myapp/blocks/simpleblock.html`:
 
   .. code-block:: html
   
       <p>the answer to life, the universe, and everything is {result}</p>
       {do_something}
 
-- ``rapido/myapp/blocks/simpleblock.py``:
+- :file:`rapido/myapp/blocks/simpleblock.py`:
 
   .. code-block:: python
   
@@ -117,11 +120,11 @@ Now, if we visit any page of our site, we will see our block.
 
     See the `Diazo <http://docs.diazo.org/en/latest/>`_ documentation for more details.
 
-But unfortunately, when we click on our "Do something" button, we are redirected
+But unfortunately, when we click on our :guilabel:`Do something` button, we are redirected
 to the original bare block.
 
 To remain in the Plone page, we need to activate the ``ajax`` target in
-``rapido/myapp/blocks/simpleblock.yaml``:
+:file:`rapido/myapp/blocks/simpleblock.yaml`:
 
 .. code-block:: yaml
 
@@ -139,7 +142,7 @@ Instead of adding a block to an existing Plone view, we might need to provide a
 new rendering, mapped to a specific URL.
 We can do that by declaring our block as a Plone view in its YAML file:
 
-.. code-block :: yaml
+.. code-block:: yaml
 
     view:
       id: my-custom-view
@@ -153,10 +156,10 @@ We can create as many views as we might need (like ``@@subscribe``, ``@@unsubscr
 
 .. note::
 
-    Adding a lot of rapido rules in our main ``rules.xml`` is not ideal.
+    Adding a lot of rapido rules in our main :file:`rules.xml` is not ideal.
     
-    We might prefer to create a ``rules.xml`` file in our ``rapido/myapp``
-    folder, and include it in our main ``rules.xml`` file like this:
+    We might prefer to create a :file:`rules.xml` file in our :file:`rapido/myapp`
+    folder, and include it in our main :file:`rules.xml` file like this:
 
     .. code-block:: xml
 
@@ -168,24 +171,37 @@ Running Python code
 Every function in our Python files takes a parameter named ``context``.
 The context gives access to useful objects:
 
-- ``context.app``: the current rapido app,
-- ``context.block``: (if executed in a block context) the current block,
-- ``context.record``: (if executed in a record context) the current record,
-- ``context.request``: the current request to rapido (the sub-request, if called
-  from Diazo),
-- ``context.parent_request``: the current page request (when called from Diazo),
-- ``context.portal``: the Plone portal object,
-- ``context.content``: the current Plone content object,
-- ``context.api``: the `Plone API
-  <http://docs.plone.org/external/plone.api/docs/>`_.
+``context.app``
+   the current rapido app,
+
+``context.block``
+   (if executed in a block context) the current block,
+
+``context.record``
+   (if executed in a record context) the current record,
+
+``context.request``
+   the current request to rapido (the sub-request, if called from Diazo),
+
+``context.parent_request``
+   the current page request (when called from Diazo),
+
+``context.portal``
+   the Plone portal object,
+
+``context.content``
+   the current Plone content object,
+
+``context.api``
+   the `Plone API <http://docs.plone.org/external/plone.api/docs/>`_.
 
 .. warning::
 
-    ``context`` is not the usual ``context`` we know in Plone (like ``context``
-    in a ZPT template or a PythonScript, or ``self.context`` in a BrowserView).
+    ``context`` is not the usual ``context`` we know in Plone (like :py:obj:`context`
+    in a ZPT template or a PythonScript, or :py:obj:`self.context` in a BrowserView).
     
     The Plone ``context`` is usually the current content. In Rapido
-    we can obtain it using ``context.content``.
+    we can obtain it using :py:obj:`context.content`.
 
 This allows us to interact with Plone in many ways, for instance we can
 run catalog queries, create contents, change workflow status, etc.
@@ -209,7 +225,7 @@ To help us debugging our code, we can add:
 
     debug: true
 
-in our app ``settings.yaml`` file. Then we can add some log message in our code:
+in our app :file:`settings.yaml` file. Then we can add some log message in our code:
 
 .. code-block:: python
 
@@ -237,7 +253,7 @@ There are 3 ways to create records in Rapido:
 
 - we can create records by submitting a block: if a
   block contain some fields elements (like ``TEXT`` or ``NUMBER`` elements for
-  instance), and if the block contains a *save* button (by adding ``{_save}`` in
+  instance), and if the block contains a :guilabel:`save` button (by adding ``{_save}`` in
   its layout), every time the user enters values in the fields and clicks
   save, the submitted values will be saved in a new record,
 - we can create records by code::

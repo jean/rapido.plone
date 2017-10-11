@@ -9,7 +9,7 @@ We want to provide a tool to manage a list of terms and their definitions:
 .. image:: ../files/glossary-1.png
 
 Every time one of these terms appears on a page of our site, it will be wrapped
-into a `<abbr>` tag, the title of which will be the definition, so when we
+into a ``<abbr>`` tag, the title of which will be the definition, so when we
 hover a term, we get a small popup indicating its definition:
 
 .. image:: ../files/glossary-2.png
@@ -31,8 +31,8 @@ Application structure
             glossary.js
     rules.xml
 
-Rules.xml
----------
+:file:`Rules.xml`
+-----------------
 
 .. code-block:: xml
 
@@ -49,7 +49,7 @@ The ``term`` block
 This block is a form allowing to create/edit/delete a glossary term. It contains
 two field elements and three actions.
 
-- ``term.html``
+- :file:`term.html`
 
   .. code-block:: html
   
@@ -57,7 +57,7 @@ two field elements and three actions.
       <p><label>Definition</label> {definition}</p>
       {_save} {_delete} {close}
 
-- ``term.yaml``
+- :file:`term.yaml`
 
   .. code-block:: yaml
   
@@ -75,7 +75,7 @@ two field elements and three actions.
               type: ACTION
               label: Delete
 
-- ``term.py``
+- :file:`term.py`
 
   .. code-block:: python
   
@@ -99,7 +99,7 @@ This block lists all the existing terms in a table.
 When we click on a term, we open it in the ``term`` block in edit mode,
 and a button allows opening a blank ``term`` block to create a new term.
 
-- ``all.html``
+- :file:`all.html`
 
   .. code-block:: html
   
@@ -108,7 +108,7 @@ and a button allows opening a blank ``term`` block to create a new term.
       </table>
       {new_term}
 
-- ``all.yaml``
+- :file:`all.yaml`
 
   .. code-block:: yaml
   
@@ -122,9 +122,10 @@ and a button allows opening a blank ``term`` block to create a new term.
               type: ACTION
               label: Add term
 
-  The ``view`` setting allows to render the ``all`` block as Plone view named ``@@glossary``, so we can call http://localhost:8080/Plone/@@glossary to see it.
+  The ``view`` setting allows to render the ``all`` block as Plone view named ``@@glossary``,
+  so we can call http://localhost:8080/Plone/@@glossary to see it.
 
-- ``all.py``
+- :file:`all.py`
 
   .. code-block:: python
   
@@ -141,16 +142,16 @@ and a button allows opening a blank ``term`` block to create a new term.
       def new_term(context):
           return context.app.get_block('term').url
 
-The ``list`` function builds a table row for each existing record,
+The :py:func:`list` function builds a table row for each existing record,
 displaying the *term* value and the *definition* value.
-The link we put on the term targets the record URL (plus `/edit` to open it in edit mode)
-and we have added `target="ajax"` so the resulting page is not displayed as a full page,
+The link we put on the term targets the record URL (plus ``/edit`` to open it in edit mode)
+and we have added ``target="ajax"`` so the resulting page is not displayed as a full page,
 it is just loaded into the current block in AJAX mode.
 
 The Javascript
 --------------
 
-- ``glossary.js``
+- :file:`glossary.js`
 
   .. code-block:: javascript
   

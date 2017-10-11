@@ -23,14 +23,14 @@ Example (assuming ``author``, ``title`` and ``price`` are existing indexes):
         "author == 'Conrad' and 'Lord Jim' in title",
         sort_index="price")
 
-Records are indexed at the time they are saved. We can force reindexing using
-the Python API:
+Records are indexed at the time they are saved.
+We can force reindexing using the Python API:
 
 .. code-block:: python
 
     myrecord.reindex()
 
-We can also reindex all the records using the ``refresh`` URL command:
+We can also reindex all the records using the ``refresh`` URL command::
 
     http://localhost:8080/Plone/@@rapido/<app-id>/refresh?_authenticator=<valid token>
 

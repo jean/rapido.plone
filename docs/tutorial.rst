@@ -6,7 +6,7 @@ How to build a content rating system in Plone in few minutes.
 Objective
 ---------
 
-We want to offer to our visitors the ability to click on a *"Like"* button on any
+We want to offer to our visitors the ability to click on a :guilabel:`Like` button on any
 Plone content, and the total of votes must be displayed next to the button.
 
 .. note::
@@ -19,48 +19,48 @@ Prerequisites
 
 Run buildout to deploy Rapido and its dependencies (see :doc:`./installation`).
 
-Install the ``rapido.plone`` add-on from Plone site setup.
+Install the :py:mod::`rapido.plone` add-on from Plone site setup.
 
 Initializing the Rapido app
 ---------------------------
 
-We go to Plone *Site setup*, and then *Theming*.
+We go to Plone :menuselection:`Site setup --> Theming`.
 
 If our current active theme is not editable inline through the Plone web
-interface (i.e. there is no *"Modify theme"* button),
+interface (i.e. there is no :guilabel:`Modify theme` button),
 we will first need to create an editable copy:
 
-- click on *"Copy"*,
-- enter a name, for example *"tutorial"*.
-- check *"Immediately enable new theme"*.
+- click on :guilabel:`Copy`,
+- enter a name, for example *tutorial*.
+- check :guilabel:`Immediately enable new theme`.
 
-Else, we just click on the *"Modify theme"* button.
+Else, we just click on the :guilabel:`Modify theme` button.
 
 We can see our theme structure, containing CSS files, images, HTML, and Diazo
 rules.
 
 To initialize our Rapido app named "rating", we need to:
 
-- create a folder named ``rapido`` in the theme root,
-- in this ``rapido`` folder, create a folder named ``rating``.
+- create a folder named :file:`rapido` in the theme root,
+- in this :file:`rapido` folder, create a folder named :file:`rating`.
 
 .. image:: files/screen-1.png
 
 The application is now ready.
 
-Creating the "Like" button
---------------------------
+Creating the :guilabel:`Like` button
+------------------------------------
 
 Rapido apps are composed of **blocks**. Let's create a block that will render
 our button:
 
-- go to the ``rating`` folder and create a new folder named ``blocks``,
-- in this ``blocks`` folder, let's create a new block named ``rate``.
+- go to the :file:`rating` folder and create a new folder named :file:`blocks`,
+- in this :file:`blocks` folder, let's create a new block named :file:`rate`.
   To do this, we need to create 3 files:
 
 .. image:: files/screen-2.png
 
-The ``rate.html`` file:
+The :file:`rate.html` file:
 
 .. code-block:: html
 
@@ -68,9 +68,9 @@ The ``rate.html`` file:
 
 This allows us to implement the block layout. It is a regular HTML file, but it
 may contain Rapido **elements**, enclosed in brackets. In our case, we have
-one element, namely ``{like}``, in charge of rendering the *"Like"* button.
+one element, namely ``{like}``, in charge of rendering the :guilabel:`Like` button.
 
-The ``rate.py`` file
+The :file:`rate.py` file
 
 .. code-block:: python
 
@@ -80,10 +80,10 @@ The ``rate.py`` file
 
 It provides the element's implementation. Each element in the block has a
 corresponding Python function having the same id.
-In our case, that is the code that will be executed when a user clicks on *"Like"*.
+In our case, that is the code that will be executed when a user clicks on :guilabel:`Like`.
 Right now, it does nothing, but we will change it later.
 
-The ``rate.yaml`` file:
+The :file:`rate.yaml` file:
 
 .. code-block:: yaml
 
@@ -94,7 +94,7 @@ The ``rate.yaml`` file:
 
 This file contains all the needed settings for our block. Here we declare that
 our block contains one element named ``like``, which is an **action** (i.e. it
-will be rendered as a button), and its displayed label is *"Like"*.
+will be rendered as a button), and its displayed label is :guilabel:`Like`.
 
 Now that our block is ready, we can see it using the following URL:
 
@@ -108,8 +108,8 @@ Inserting the block in Plone pages
 ----------------------------------
 
 To include our block somewhere in Plone, we will use a Diazo rule.
-Let's open our ``rules.xml`` file in the root of our theme, and add the following
-lines:
+Let's open our :file:`rules.xml` file in the root of our theme,
+and add the following lines:
 
 .. code-block:: xml
 
@@ -126,7 +126,7 @@ under the title.
 
 .. image:: files/screen-4.png
 
-That is nice, but there is a small problem: when we click on the *"Like"* button,
+That is nice, but there is a small problem: when we click on the :guilabel:`Like` button,
 we are redirected to the raw block content, and we lose our current Plone page.
 
 Let's fix that.
@@ -137,7 +137,7 @@ Staying in our Plone page
 If we want to stay on our current page after submitting our block,
 we need to enable **AJAX** mode.
 
-To do this, let's change our ``rate.yaml`` file like this:
+To do this, let's change our :file:`rate.yaml` file like this:
 
 .. code-block:: yaml
 
@@ -147,15 +147,15 @@ To do this, let's change our ``rate.yaml`` file like this:
             type: ACTION
             label: Like
 
-Now, if we click on the *"Like"* button, the block is just reloaded dynamically,
+Now, if we click on the :guilabel:`Like` button, the block is just reloaded dynamically,
 and we stay in our current page.
 
 Counting the votes
 ------------------
 
-Let's go back to ``rate.py``, and focus on the ``like`` function implementation.
+Let's go back to :file:`rate.py`, and focus on the ``like`` function implementation.
 
-When a user clicks on the *"Like"* button, we need to get the current content the
+When a user clicks on the :guilabel:`Like` button, we need to get the current content the
 user voted for, check how many votes it already has, and add one new vote.
 
 Rapido allows to create **records**, so we will create a record for each content
@@ -174,13 +174,13 @@ So let's replace our current implementation with:
         total += 1
         record['total'] = total
 
-``context.content`` returns the current Plone content, and ``absolute_url_path`` is
+:py:obj:`context.content` returns the current Plone content, and :py:meth:`absolute_url_path` is
 a Plone method returning the path of a Plone object.
 
-``context.app`` allows to access to the current Rapido app, so we can easily use
-the Rapido API, like ``create_record`` or ``get_record``.
+:py:obj:`context.app` allows to access to the current Rapido app, so we can easily use
+the Rapido API, like :py:meth:`create_record` or :py:meth:`get_record`.
 
-A Rapido record contains **items**. The ``get(item, default=none)`` method
+A Rapido record contains **items**. The :py:meth:`get(item, default=none)` method
 returns the value of the requested item or the default value if the item does
 not exist.
 
@@ -189,7 +189,7 @@ Displaying the votes
 
 Now we are able to store votes, we also want to display the *total* of votes.
 
-Fist, let's change the block layout in ``rate.html``:
+Fist, let's change the block layout in :file:`rate.html`:
 
 .. code-block:: html
 
@@ -198,7 +198,7 @@ Fist, let's change the block layout in ``rate.html``:
 
 So now we have a new ``display`` element in our block.
 
-We must declare it in ``rate.yaml``:
+We must declare it in :file:`rate.yaml`:
 
 .. code-block:: yaml
 
@@ -209,7 +209,7 @@ We must declare it in ``rate.yaml``:
             label: Like
         display: BASIC
 
-And let's implement it in ``rate.py``:
+And let's implement it in :file:`rate.py`:
 
 .. code-block:: python
 
@@ -230,26 +230,26 @@ That's it! Our rating feature is ready to be used.
 Debugging
 ---------
 
-As we are writing code, we might (we will) make mistakes. In this case, , it is
+As we are writing code, we might (we will) make mistakes. In this case, it is
 always helpul to read the error messages returned by the system.
 
 It is also very helpful to be able to log messages from our code, so we
 understand what is going on exactly when it is executed.
 
-Rapido provides the ``context.app.log()`` method which will log string messages
+Rapido provides the :py:meth:`context.app.log()` method which will log string messages
 or any serializable object (dictionnaries, arrays, etc.).
 
 The log messages and the error messages are visible in the server log (but we
 might not be able to access it), but also in our browser's **javascript console**.
 
 First thing to do is to enable the **debug mode** in our app.
-To do that, we need to create a ``settings.yaml`` file in ``/rapido/rating``:
+To do that, we need to create a :file:`settings.yaml` file in :file:`/rapido/rating`:
 
 .. code-block:: yaml
 
     debug: true
 
-And now, let's change our ``display`` function:
+And now, let's change our :py:func:`display` function:
 
 .. code-block:: python
 
@@ -266,7 +266,7 @@ We will see the following in our browser's console:
 .. image:: files/debug-1.png
 
 Let's imagine now we made an error like forgetting the colon at the end of the
-``if`` statement:
+:keyword:`if` statement:
 
 .. code-block:: python
 
@@ -286,9 +286,9 @@ Listing the top 5 items
 
 We would also like to see the top 5 rated content items on the site home page.
 
-The first thing we need is to index the ``total`` element.
+The first thing we need is to index the :py:obj:`total` element.
 
-We declare its indexing mode in ``rate.yaml``:
+We declare its indexing mode in :file:`rate.yaml`:
 
 .. code-block:: yaml
 
@@ -308,8 +308,8 @@ we have to refresh the storage index by calling the following URL:
     http://localhost:8080/Plone/@@rapido/rating/refresh
 
 And to make sure future changes will be indexed,
-we need to fix the ``like`` function in the ``rate`` block:
-the indexing is triggered when we call the record's ``save`` method:
+we need to fix the :py:func:`like` function in the ``rate`` block:
+the indexing is triggered when we call the record's :py:meth:`save` method:
 
 .. code-block:: python
 
@@ -325,21 +325,21 @@ the indexing is triggered when we call the record's ``save`` method:
 
 We are now able to build a block to display the top 5 contents:
 
-- ``top5.html``:
+- :file:`top5.html`:
 
 .. code-block:: html
 
     <h3>Our current Top 5!</h3>
     {top}
 
-- ``top5.yaml``:
+- :file:`top5.yaml`:
 
 .. code-block:: yaml
 
     elements:
         top: BASIC
 
-- ``top5.py``:
+- :file:`top5.py`:
 
 .. code-block:: python
 
@@ -355,8 +355,8 @@ We are now able to build a block to display the top 5 contents:
         html += "</ul>"
         return html
 
-The ``search`` method allows us to query our stored records. The record ids are
-the content paths, so using the Plone API (``context.api``), we can easily
+The :py:meth:`search` method allows us to query our stored records. The record ids are
+the content paths, so using the Plone API (:py:mod:`context.api`), we can easily
 get the corresponding contents, and then obtain their URLs and titles.
 
 Our block works now:
@@ -364,7 +364,7 @@ Our block works now:
     http://localhost:8080/Plone/@@rapido/rating/blocks/top5
 
 Finally, we have to insert our block in the home page.
-That will be done in ``rules.xml``:
+That will be done in :file:`rules.xml`:
 
 .. code-block:: xml
 
@@ -380,12 +380,12 @@ Creating a new page for reports
 -------------------------------
 
 For now, we have just added small chunks of HTML in existing pages. But Rapido
-also allows us to create a new page (a Plone developer would name it a new `view`).
+also allows us to create a new page (a Plone developer would name it a new ``view``).
 
 Let's pretend we want to create a report page about the votes on the content of
 a folder.
 
-First, we need a block, ``report.html``:
+First, we need a block, :file:`report.html`:
 
 .. code-block:: html
 
@@ -394,7 +394,7 @@ First, we need a block, ``report.html``:
 
 We want this block to be the main content of a new view.
 
-We need to declare it in a new YAML file called ``report.yaml``:
+We need to declare it in a new YAML file called :file:`report.yaml`:
 
 .. code-block:: yaml
 
@@ -414,7 +414,7 @@ like we did in the Top 5 block.
 Let's change our approach and implement a fancy pie chart using the 
 `amazing D3js library <http://d3js.org/>`_ and the :doc:`Rapido REST API <./rest>`.
 
-We need to create a Javascript file (``report.js``) in the ``/rapido/rating``
+We need to create a Javascript file (:file:`report.js`) in the :file:`/rapido/rating`
 folder:
 
 .. code-block:: javascript
@@ -528,8 +528,8 @@ method), we need it to use the Rapido REST API.
       token in an HTTP header.
       We just use them because they are provided by Plone by default, and they make our
       work easier.
-    - Instead of loading D3 directly form its CDN, we could have put the ``d3.v3.min.js``
-      in the ``/rapido/rating`` folder, and serve it locally.
+    - Instead of loading D3 directly form its CDN, we could have put the :file:`d3.v3.min.js`
+      in the :file:`/rapido/rating` folder, and serve it locally.
 
 The second interesting part is the ``d3.json()`` call:
 
@@ -560,8 +560,9 @@ Download the :download:`source files of this tutorial <files/tutorial.zip>`.
 
 .. note::
 
-    This .zip file can be imported in the theming editor, but it cannot be activated as a regular theme as it just contains our Rapido app.
-    The app can be used from our main theme by adding a `rating.lnk` file in our current theme's ``rapido`` folder, containing::
+    This :file:`.zip` file can be imported in the theming editor,
+    but it cannot be activated as a regular theme as it just contains our Rapido app.
+    The app can be used from our main theme by adding a :file:`rating.lnk` file in our current theme's :file:`rapido` folder, containing::
 
         tutorial
 
@@ -580,4 +581,4 @@ Download the :download:`source files of this tutorial <files/tutorial.zip>`.
             </before>
         </rules>
 
-    in our main theme's ``rules.xml``.
+    in our main theme's :file:`rules.xml`.

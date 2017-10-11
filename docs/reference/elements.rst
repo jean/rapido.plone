@@ -36,12 +36,21 @@ Types
 
 There are different types of elements (defined by the ``type`` parameter):
 
-- ``BASIC``: a piece of HTML returned by its implementation function.
-- ``ACTION``: a button that will execute the implementation function when clicked.
-  Its label is provided by the ``label`` parameter.
-- ``TEXT``: a text input field.
-- ``NUMBER``: a number input field.
-- ``DATETIME``: a date/time input field.
+``BASIC``
+   a piece of HTML returned by its implementation function.
+
+``ACTION``
+   a button that will execute the implementation function when clicked.
+   Its label is provided by the ``label`` parameter.
+
+``TEXT``
+   a text input field.
+
+``NUMBER``
+   a number input field.
+
+``DATETIME``
+   a date/time input field.
 
 Input elements
 --------------

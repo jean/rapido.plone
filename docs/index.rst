@@ -18,18 +18,18 @@ Creating a small form able to send an email, or to store some data, generating
 some extra information about a page and inserting it wherever we want: with Plone
 these kind of tasks are complex for experts, and almost impossible for beginners.
 
-**rapido.plone** allows any developer having a little knowledge of HTML and a
+:py:mod:`rapido.plone` allows any developer having a little knowledge of HTML and a
 little knowledge of Python to implement custom elements and insert them anywhere
 they want in their Plone site.
 
 How?
 ----
 
-The unique interface to build applications with rapido.plone is the **Plone
-theming tool**.
+The unique interface to build applications with :py:mod:`rapido.plone` is the 
+**Plone theming tool**.
 
-It implies it can be achieved in the **file system** or through the 
-**inline theming editor**.
+This means that Rapido applications can be built in the **file system** or
+through the **inline theming editor**.
 
 A Rapido application is just a part of our current theme; it can be
 imported, exported, copied, modified, etc. like the rest of the theme.
